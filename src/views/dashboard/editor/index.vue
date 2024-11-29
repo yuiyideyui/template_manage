@@ -1,0 +1,82 @@
+<template>
+  <div class="dashboard-editor-container">
+    <div class="clearfix">
+      <pan-thumb
+        :image="
+          avatar
+            ? avatar
+            : 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
+        "
+        style="float: left"
+      >
+        你的角色:
+        <span v-for="item in roles" :key="item" class="pan-info-roles">{{
+          item
+        }}</span>
+      </pan-thumb>
+      <!-- <github-corner style="position: absolute; top: 0px; border: 0; right: 0;" /> -->
+      <div class="info-container">
+        <span class="display_name">{{ name }}</span>
+        <span
+          style="font-size: 20px; padding-top: 20px; display: inline-block"
+        >虚拟仿真教学平台后台管理系统</span>
+      </div>
+    </div>
+    <div class="welcome">
+      <span>欢迎，{{ name }}</span>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+import PanThumb from '@/components/PanThumb'
+export default {
+  name: 'DashboardEditor',
+  components: { PanThumb },
+  computed: {
+    ...mapGetters(['name', 'avatar', 'roles'])
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.emptyGif {
+  display: block;
+  width: 45%;
+  margin: 0 auto;
+}
+
+.dashboard-editor-container {
+  position: relative;
+  background-color: #e3e3e3;
+  min-height: 100vh;
+  padding: 50px 60px 0px;
+  .pan-info-roles {
+    font-size: 12px;
+    font-weight: 700;
+    color: #333;
+    display: block;
+  }
+  .info-container {
+    position: relative;
+    margin-left: 190px;
+    height: 150px;
+    line-height: 200px;
+    .display_name {
+      font-size: 48px;
+      line-height: 48px;
+      color: #212121;
+      position: absolute;
+      top: 25px;
+    }
+  }
+
+  .welcome {
+    margin-top: 100px;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+  }
+}
+</style>
