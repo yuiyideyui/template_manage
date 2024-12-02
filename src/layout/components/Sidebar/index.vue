@@ -39,8 +39,8 @@ export default {
   computed: {
     ...mapGetters(['permission_routes', 'sidebar']),
     activeMenu() {
-      // console.log(this.permission_routes);
-      console.log('执行了');
+      // console.log(this.permission_routes,'this.per');
+      // console.log('执行了');
      
       const route = useRouter()
       // console.log(route,'21');
@@ -50,7 +50,7 @@ export default {
       if (meta.activeMenu) {
         return meta.activeMenu
       }
-      console.log(this.sidebar);
+      // console.log(this.sidebar);
       
       return path
     },

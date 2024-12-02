@@ -21,21 +21,21 @@ router.beforeEach(async (to, from, next) => {
       NProgress.done()
     } else {
       const hasRoles = store.state.user.roles && store.state.user.roles.length > 0
-      console.log(store.state.user);
+      // console.log(store.state.user);
       
       if (hasRoles) {
-        console.log('next');
+        // console.log('next');
         
         next()
       } else {
         try {
           const { roleName } = await store.dispatch('user/getInfo')
           const accessRoutes = await store.dispatch('permission/generateRoutes', roleName)
-          console.log('到这里',accessRoutes);
+          // console.log('到这里',accessRoutes);
           
           // 添加动态路由
           accessRoutes.forEach(route => {
-            console.log(route);
+            // console.log(route);
             if(route.path==="*"){
               
             }else{
@@ -43,11 +43,9 @@ router.beforeEach(async (to, from, next) => {
             }
            
           })
-          console.log('1zdw2');
           
           next()
         } catch (error) {
-          console.log('1zdw');
           
           await store.dispatch('user/resetToken')
           ElMessage.error(error || 'Has Error')
@@ -58,6 +56,7 @@ router.beforeEach(async (to, from, next) => {
     }
   } else {
     if (whiteList.includes(to.path)) {
+      
       next()
     } else {
       next(`/login?redirect=${to.path}`)

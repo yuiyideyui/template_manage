@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { updatePassword } from '@/api/user'
+import { updatePassword } from '@/api/user.js'
 import { mapGetters } from 'vuex'
 export default {
   data() {
@@ -160,7 +160,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scope>
+<style lang="less" scope>
 .el-form.update-password {
   width: 60%;
   margin: 50px auto 0;

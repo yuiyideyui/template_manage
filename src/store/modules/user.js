@@ -67,7 +67,7 @@ const actions = {
 
         // 存入data
         commit('SET_TOKEN', data.token)
-        console.log('执行到这里');
+        // console.log('执行到这里');
         
         setToken(data.token)
         resolve()
@@ -82,7 +82,7 @@ const actions = {
   getInfo({ commit }) {
     return new Promise((resolve, reject) => {
       getInfo().then(response => {
-        console.log(response)
+        // console.log(response)
         const { data } = response
         if (!data) {
           reject('获取用户信息失败，请重新登录')

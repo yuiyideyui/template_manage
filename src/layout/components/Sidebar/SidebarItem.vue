@@ -104,9 +104,9 @@ export default defineComponent({
       if (isExternal(this.basePath)) {
         return this.basePath
       }
-      console.log(this.basePath,routePath,'2');
+ 
       
-      return urlJoin(routePath)
+      return urlJoin(this.basePath+"/",routePath)
      
       
     }

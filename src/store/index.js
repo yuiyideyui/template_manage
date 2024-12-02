@@ -4,8 +4,9 @@ import app from "./modules/app.js"
 import api from './modules/api.js'
 import  permission  from './modules/permission.js'
 import user from './modules/user.js'
-import setting from './modules/settings.js'
+import settings from './modules/settings.js'
 import errorLog from './modules/errorLog.js'
+import tagsView from './modules/tagsView.js'
 // 自动加载 modules 目录下的所有模块
 // const modulesFiles = import.meta.glob('./modules/*.js')
 
@@ -29,8 +30,9 @@ const store = createStore({
     api,
     permission,
     user,
-    setting,
-    errorLog
+    settings,
+    errorLog,
+    tagsView,
   },
   getters,
 })

@@ -13,7 +13,7 @@ export const constantRoutes = [
       {
         path: '/redirect/:path(.*)',
         component: () => import('@/views/redirect/index.vue')
-      }
+      }   
     ]
   },
   {
@@ -53,7 +53,7 @@ export const constantRoutes = [
   {
     path: '/courseManage',
     component: Layout,
-    redirect: '/courseManage/courseLib.vue',
+    redirect: '/courseManage/courseLib',
     alwaysShow: true,
     meta: {
       title: '课程管理',
@@ -78,7 +78,7 @@ export const constantRoutes = [
   {
     path: '/userManage',
     component: Layout,
-    redirect: '/userManage/intelligentTutoring.vue',
+    redirect: '/userManage/intelligentTutoring',
     alwaysShow: true, // will always show the root menu
     name: 'userManage',
     meta: {
@@ -166,7 +166,7 @@ export const constantRoutes2 = [
     redirect: '/profile',
     children: [
       {
-        path: '/profile',
+        path: 'profile',
         component: () => import('@/views/profile/index.vue'),
         name: 'profile',
         meta: { title: '个人中心', icon: 'user', affix: false }
@@ -243,11 +243,13 @@ export const defaultroutes = [
   { path: '*', redirect: '/404', hidden: true, meta: { title: '404' }}
 ]
 import { createRouter, createWebHistory  } from 'vue-router'
+// console.log([...constantRoutes, ...constantRoutes2]);
+
 const createRouterInstance = () => {
   return createRouter({
     history: createWebHistory(import.meta.env.BASE_URL), // 创建基于 HTML5 History 模式的路由
     scrollBehavior: () => ({ y: 0 }), // 每次路由切换时，页面滚动到顶部
-    routes: [...constantRoutes, ...constantRoutes2], // 合并路由配置
+    routes: [...constantRoutes2,...constantRoutes], // 合并路由配置
   })
 }
 
