@@ -1,6 +1,7 @@
 <template>
   <div class="user-info">
-    <el-col :span="6" style="margin-right: 40px">
+    <el-row>
+    <el-col :span="4" style="margin-right: 40px">
       <div class="block" style="margin-top: 50px; width: 100%; text-align: center">
         <el-avatar shape="square" :size="120" :src="updateUserManageForm.avatar" />
         <p @click="changeAvatar"><a>更换头像</a></p>
@@ -9,7 +10,7 @@
 
     <!-- 点击图片弹出对话框 -->
     <el-dialog title="修改头像" :visible.sync="avatarDialogVisible" width="750px">
-      <vueCropper ref="cropper" />
+      <!-- <vueCropper ref="cropper" /> -->
       <span slot="footer" class="dialog-footer">
         <el-button @click="this.avatarDialogVisible = false">取 消</el-button>
         <el-button type="primary" icon="el-icon-upload" :loading="loadingBtn" @click="updateImg">确认更改</el-button>
@@ -17,7 +18,7 @@
     </el-dialog>
 
     <!-- 个人信息展示 -->
-    <el-col :span="14" style="border-left: solid 1px rgba(0, 0, 0, 0.3); padding-left: 0px">
+    <el-col :span="18" style="border-left: solid 1px rgba(0, 0, 0, 0.3); padding-left: 0px">
       <el-form
         ref="UpdateUserManageForm"
         name="UpdateUserManageForm"
@@ -26,19 +27,20 @@
         label-width="auto"
         label-position="left"
       >
-        <el-form-item label="用户角色:" label-width="220">
-          <span style="position: absolute; left: 94px">
+      <!--  label-width="220" -->
+        <el-form-item label="用户角色:">
+          <span style="position: absolute; left: 0px">
             {{ roles }}
           </span>
         </el-form-item>
-        <el-form-item label="用户名称:" label-width="220" prop="name">
+        <el-form-item label="用户名称:" prop="name">
           <el-input
             v-model.trim="updateUserManageForm.name"
             :placeholder="updateUserManageForm.name"
             style="width: 80%"
           />
         </el-form-item>
-        <el-form-item label="手机号码:" label-width="220" prop="mobile">
+        <el-form-item label="手机号码:" prop="mobile">
           <el-input
             v-model.trim="updateUserManageForm.mobile"
             :placeholder="updateUserManageForm.mobile"
@@ -46,34 +48,38 @@
             oninput="value=value.replace(/[^0-9.]/g,'')"
           />
         </el-form-item>
-        <el-form-item label="电子邮箱:" label-width="220" prop="email">
+        <el-form-item label="电子邮箱:" prop="email">
           <el-input
             v-model.trim="updateUserManageForm.email"
             :placeholder="updateUserManageForm.email"
             style="width: 80%"
           />
         </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('UpdateUserManageForm')">提交</el-button>
-          <el-button @click="resetForm('UpdateUserManageForm')">重置</el-button>
+        <el-form-item >
+          <div style="display: flex;justify-content: flex-end; width:82%">
+            <el-button type="primary" @click="submitForm('UpdateUserManageForm')">提交</el-button>
+            <el-button @click="resetForm('UpdateUserManageForm')">重置</el-button>
+
+          </div>
         </el-form-item>
       </el-form>
     </el-col>
+  </el-row>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import { updateData } from '@/utils/changeData'
-import { actionReminder } from '@/utils/reminder'
-import vueCropper from './vueCropper.vue'
-import { updateSelfInfo } from '@/api/user'
+import { updateData } from '@/utils/changeData.js'
+import { actionReminder } from '@/utils/reminder.js'
+// import vueCropper from './vueCropper.vue'
+import { updateSelfInfo } from '@/api/user.js'
 
 export default {
   name: 'UserInfo',
   // 上传图片组件
   components: {
-    vueCropper
+    // vueCropper
   },
   data() {
     var validateName = (rule, value, callback) => {
@@ -230,7 +236,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="less" scope>
 .user-info {
   .el-form {
     width: 60%;

@@ -8,7 +8,7 @@ console.log(tagsView);
 const state = {
   theme: "#1890ff",
   showSettings,
-  tagsView:tagsView,
+  tagsView,
   fixedHeader,
   sidebarLogo,
   supportPinyinSearch

@@ -1,6 +1,6 @@
 import { lowerInitial, upperInitial, typeFilter } from './changeDataForm'
 import { actionReminder } from './reminder'
-import { Message } from 'element-ui'
+import { ElMessage } from 'element-plus'
 // ========用户进行数据更新行为的回调========
 
 // 添加与编辑 isType是判断type
@@ -30,7 +30,7 @@ export function updateData(formName, that, noList, isType) {
       if (valid) {
         if (formName == 'AddCourseInfoForm') {
           if (that.addCourseInfoForm.stuList.length == 0) {
-            Message('没有勾选学生，无法新增')
+            ElMessage('没有勾选学生，无法新增')
             return
           }
         }

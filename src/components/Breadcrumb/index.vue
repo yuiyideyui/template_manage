@@ -49,7 +49,7 @@ export default {
       }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
-      console.log(this.levelList);
+      // console.log(this.levelList);
       
     },
     isDashboard(route) {
