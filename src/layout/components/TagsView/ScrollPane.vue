@@ -4,47 +4,54 @@
   </el-scrollbar>
 </template>
 
-<script>
+<script setup lang="ts">
+import {ref,computed,onMounted,onBeforeUnmount ,inject } from "vue"
 const tagAndTagSpacing = 4 // tagAndTagSpacing
+const scrollContainer = ref(null)
+const left = ref(0)
+const emit = defineEmits(['scroll'])
+const prop=defineProps(['tag'])
+// const tagList = inject('tag', [])
+const scrollWrapper = computed(()=>{
+  // console.log(scrollContainer.value.wrapRef);
+  
+  return scrollContainer.value.wrapRef
+})
 
-export default {
-  name: 'ScrollPane',
-  data() {
-    return {
-      left: 0
-    }
-  },
-  computed: {
-    scrollWrapper() {
-      return this.$refs.scrollContainer.$refs.wrap
-    }
-  },
-  mounted() {
-    this.scrollWrapper.addEventListener('scroll', this.emitScroll, true)
-  },
-  beforeDestroy() {
-    this.scrollWrapper.removeEventListener('scroll', this.emitScroll)
-  },
-  methods: {
-    handleScroll(e) {
-      const eventDelta = e.wheelDelta || -e.deltaY * 40
-      const $scrollWrapper = this.scrollWrapper
-      $scrollWrapper.scrollLeft = $scrollWrapper.scrollLeft + eventDelta / 4
-    },
-    emitScroll() {
-      this.$emit('scroll')
-    },
-    moveToTarget(currentTag) {
-      const $container = this.$refs.scrollContainer.$el
+const emitScroll = ()=>{
+  emit('scroll')
+}
+
+onMounted(()=>{
+  // console.log(scrollWrapper.value);
+  
+  scrollWrapper.value.addEventListener('scroll', emitScroll, true)
+})
+
+onBeforeUnmount(()=>{
+  scrollWrapper.value.removeEventListener('scroll',emitScroll)
+})
+
+const handleScroll = (e)=>{
+  const eventDelta = e.wheelDelta || -e.deltaY * 40
+  const $scrollWrapper = scrollWrapper.value
+  $scrollWrapper.scrollLeft = $scrollWrapper.scrollLeft + eventDelta / 4
+}
+
+const moveToTarget=function(currentTag) {
+      const $container = scrollContainer.value.$el
       const $containerWidth = $container.offsetWidth
-      const $scrollWrapper = this.scrollWrapper
-      const tagList = this.$parent.$refs.tag
+      const $scrollWrapper = scrollWrapper.value
+      const tagList = prop.tag
 
       let firstTag = null
       let lastTag = null
-
+      // console.log(tagList);
+  
       // find first tag and last tag
       if (tagList.length > 0) {
+      
+        
         firstTag = tagList[0]
         lastTag = tagList[tagList.length - 1]
       }
@@ -54,6 +61,8 @@ export default {
       } else if (lastTag === currentTag) {
         $scrollWrapper.scrollLeft = $scrollWrapper.scrollWidth - $containerWidth
       } else {
+        // console.log(tagList.value[currentIndex + 1]);
+        
         // find preTag and nextTag
         const currentIndex = tagList.findIndex(item => item === currentTag)
         const prevTag = tagList[currentIndex - 1]
@@ -71,24 +80,22 @@ export default {
           $scrollWrapper.scrollLeft = beforePrevTagOffsetLeft
         }
       }
-    }
-  }
 }
+defineExpose({moveToTarget})
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .scroll-container {
   white-space: nowrap;
   position: relative;
   overflow: hidden;
   width: 100%;
-  ::v-deep {
-    .el-scrollbar__bar {
-      bottom: 0px;
-    }
-    .el-scrollbar__wrap {
-      height: 49px;
-    }
+  :deep(.el-scrollbar__bar) {
+    bottom: 0px;
+  }
+
+  :deep(.el-scrollbar__wrap) {
+    height: 49px;
   }
 }
 </style>

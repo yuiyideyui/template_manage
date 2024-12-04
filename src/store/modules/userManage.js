@@ -32,7 +32,7 @@ export default {
       state.goupdate = state.goupdate == 0 ? 1 : 0
     },
     set_goreset(state) {
-      console.log(223)
+      // console.log(223)
       state.goreset = state.goreset == 0 ? 1 : 0
     },
     set_goresetIT(state) {

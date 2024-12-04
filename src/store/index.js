@@ -7,6 +7,7 @@ import user from './modules/user.js'
 import settings from './modules/settings.js'
 import errorLog from './modules/errorLog.js'
 import tagsView from './modules/tagsView.js'
+import dataManage from "./modules/dataManage.js"
 // 自动加载 modules 目录下的所有模块
 // const modulesFiles = import.meta.glob('./modules/*.js')
 
@@ -33,6 +34,7 @@ const store = createStore({
     settings,
     errorLog,
     tagsView,
+    dataManage,
   },
   getters,
 })

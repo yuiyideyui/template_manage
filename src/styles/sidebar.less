@@ -78,9 +78,11 @@
     }
 
     .is-active>.el-sub-menu__title {
-      color: @subMenuActiveText !important;
+      color: @menuActiveText !important;
     }
-
+    .is-active.el-menu-item{
+      color: @menuActiveText !important;
+    }
     & .nest-menu .el-sub-menu>.el-sub-menu__title,
     & .el-sub-menu .el-menu-item {
       min-width: @sideBarWidth !important;
