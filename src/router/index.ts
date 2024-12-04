@@ -51,60 +51,60 @@ export const constantRoutes = [
   },
    
   {
-    path: '/courseManage',
+    path: '/userManage',
     component: Layout,
-    redirect: '/courseManage/courseLib',
+    redirect: '/userManage/userManage',
     alwaysShow: true,
     meta: {
-      title: '课程管理',
+      title: '用户管理',
       icon: 'Tickets',
       roles: ['超级管理员', 'admin', 'editor']
     },
     children: [
       {
-        path: '/courseLib',
-        // component: () => import('@/views/courseManage/courseLib.vue'),
-        name: '课程库',
-        meta: { title: '课程库', icon: 'Document', noCache: true }
+        path: 'userManage',
+        component: () => import('@/views/courseManage/courseLib.vue'),
+        name: 'userManage',
+        meta: { title: '账号管理', icon: 'Document', noCache: true }
       },
       {
-        path: '/courseInfo',
-        // component: () => import('@/views/courseManage/courseInfo.vue'),
-        name: '课程信息',
-        meta: { title: '课程信息', icon: 'Notebook', noCache: true }
+        path: 'roleManage',
+        component: () => import('@/views/courseManage/courseInfo.vue'),
+        name: 'roleManage1',
+        meta: { title: '角色管理', icon: 'Notebook', noCache: true }
       }
     ]
   },
   {
-    path: '/userManage',
+    path: '/partyEvaluation',
     component: Layout,
-    redirect: '/userManage/intelligentTutoring',
+    redirect: '/partyEvaluation/dataManagement',
     alwaysShow: true, // will always show the root menu
-    name: 'userManage',
+    name: 'partyEvaluation',
     meta: {
-      title: '用户管理',
+      title: '党员评价',
       icon: 'lock',
-      roles: ['超级管理员', 'admin', 'editor'] // you can set roles in root nav
+      roles: ['超级管理员', 'admin', 'editor'] 
     },
     children: [
       {
-        path: 'intelligentTutoring',
-        // component: () => import('@/views/userManage/intelligentTutoring.vue'),
-        name: 'intelligentTutoring',
+        path: 'dataManagement',
+        component: () => import('@/views/partyEvaluation/dataManagement.vue'),
+        name: 'dataManagement',
         meta: {
-          title: '智能教学平台',
-          icon: 'education'
-          // roles: ['超级管理员', 'admin'] // or you can only set roles in sub nav
+          title: '数据管理',
+          icon: 'education',
+          roles: ['超级管理员', 'admin'] // or you can only set roles in sub nav
         }
       },
       {
-        path: 'backstageManage',
-        // component: () => import('@/views/userManage/backstageManage.vue'),
-        name: 'backstageManage',
+        path: 'evaluationResults',
+        component: () => import('@/views/partyEvaluation/evaluationResults.vue'),
+        name: 'evaluationResults',
         meta: {
-          title: '后台管理系统',
-          icon: 'tree-table'
-          // roles: ['超级管理员', 'admin']
+          title: '评价结果',
+          icon: 'tree-table',
+          roles: ['超级管理员', 'admin']
         }
       }
     ]

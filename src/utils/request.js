@@ -1,12 +1,12 @@
 import axios from 'axios'
-import { ElMessageBox , ElMessage } from 'element-plus'
+// import { ElMessageBox , ElMessage } from 'element-plus'
 import store from '@/store'
 import { getToken } from '@/utils/auth.js'
 
 // create an axios instance
 const service = axios.create({
-    // http://124.220.167.161:3005  http://192.168.0.84:3003
-    baseURL:"http://192.168.0.84:3003", // url = base url + request url
+    // http://124.220.167.161:3005  http://192.168.0.84:3003 
+    baseURL:" http://124.220.167.161:3005", // url = base url + request url
     // withCredentials: true, // send cookies when cross-domain requests
     timeout: 120000 // request timeout
 })
@@ -46,7 +46,7 @@ service.interceptors.response.use(
     response => {
         const res = response.data
         if (res.code === 4003) {
-            ElMessageBox .confirm('登录已失效', '确认', {
+            ElMessageBox.confirm('登录已失效', '确认', {
                 confirmButtonText: '重新登录',
                 cancelButtonText: '取消',
                 type: 'warning'

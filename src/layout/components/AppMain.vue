@@ -1,28 +1,30 @@
 <template>
   <section class="app-main">
-    <transition name="fade-transform" mode="out-in">
+    <!-- <transition name="fade-transform" mode="out-in">
       <keep-alive :include="cachedViews">
-        <router-view :key="key" />
+     
       </keep-alive>
-    </transition>
+    </transition> -->
+     <router-view :key="key" />
   </section>
 </template>
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import {useStore} from "vuex"
+const store = useStore()
+const route = useRoute()
 
-<script>
-export default {
-  name: 'AppMain',
-  computed: {
-    cachedViews() {
-      return this.$store.state.tagsView.cachedViews
-    },
-    key() {
-      console.log('path',this.$route.path);
-      
-      return this.$route.path
-    }
-  }
-}
+// 缓存视图
+const cachedViews = computed(() => store.state.tagsView.cachedViews)
+
+// 当前路由路径
+const key = computed(() => {
+  console.log('path', route.path)
+  return route.path
+})
 </script>
+
 
 <style lang="less" scoped>
 .app-main {
@@ -30,7 +32,7 @@ export default {
   /* 50= navbar  50  */
   min-height: calc(100vh - 50px);
   width: 100%;
-  position: relative;
+  position: relative !important;
   overflow: hidden;
 }
 
@@ -45,7 +47,9 @@ export default {
   }
 
   .fixed-header+.app-main {
-    padding-top: 84px;
+    // padding-top: 84px;
+    padding-top: 100px;
+   
   }
 }
 </style>

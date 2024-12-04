@@ -106,7 +106,7 @@ export default {
 
 <style lang="less" scoped>
 .navbar {
-  background-color: red;
+  // background-color: red;
   height: 50px;
   overflow: hidden;
   position: relative;
@@ -114,7 +114,7 @@ export default {
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   .hamburger-container {
-    background-color: red;
+    // background-color: red;
     line-height: 46px;
     height: 100%;
     float: left;
@@ -140,13 +140,13 @@ export default {
     float: right;
     height: 100%;
     line-height: 50px;
-    background-color: red;
+    // background-color: red;
     &:focus {
       outline: none;
     }
 
     .right-menu-item {
-      background-color: red;
+      // background-color: red;
       display: inline-block;
       padding: 0 8px;
       height: 100%;
@@ -166,7 +166,7 @@ export default {
 
     .avatar-container {
       margin-right: 30px;
-      background-color: red;
+      // background-color: red;
       .avatar-wrapper {
         margin-top: 5px;
         position: relative;
